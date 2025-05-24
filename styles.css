@@ -1,0 +1,28 @@
+:root {
+  --color-white: #ffffff;
+  --color-dark: #242424;
+
+  --color-error: #FF3838;
+  --color-success: rgb(96, 196, 159);
+  --color-success-opacity-50: rgba(96, 196, 159, 0.5);
+  --color-success-opacity-10: rgba(96, 196, 159, 0.1);
+
+  --color-bg-card: #F6F6F6;
+  --color-border: #E0E0E0;
+  --color-bg-disabled: #CACACA;
+  --color-label: #7A7A7A;
+
+  --border-radius: 4px;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Work Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-size: 15px;
+}
