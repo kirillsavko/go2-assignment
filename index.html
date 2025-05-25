@@ -1,14 +1,144 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-  <meta charset="UTF-8">
+  <meta charset='UTF-8'>
   <title>Go2 Assignment</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel='preconnect' href='https://fonts.googleapis.com'>
+  <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+  <link href='https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap' rel='stylesheet'>
   <link rel='stylesheet' href='styles.css' />
 </head>
 <body>
-  <h1>hello world</h1>
+  <main class='main'>
+    <section class='section basic-details basic-details--active'>
+      <div class='container'>
+        <h1>A little about you</h1>
+        <p>Please fill some of the basic details to get started.</p>
+
+        <form class='basic-details__form' novalidate>
+          <fieldset class='basic-details__form-input-wrapper'>
+            <legend class='hidden'>Basic details</legend>
+
+            <label class='form-field basic-details__form-field'>
+              <span class='form-field__label'>First Name</span>
+              <input type='text' name='first-name' class='form-field__input' required minlength='2' maxlength='50'>
+              <span class='form-field__error'></span>
+            </label>
+
+            <label class='form-field basic-details__form-field'>
+              <span class='form-field__label'>Last Name</span>
+              <input type='text' name='last-name' class='form-field__input' required minlength='2' maxlength='50'>
+              <span class='form-field__error'></span>
+            </label>
+
+            <div class='basic-details__form-phone-number'>
+              <div class='select'>
+                <button
+                  class='select__control'
+                  type='button'
+                  aria-haspopup='listbox'
+                  aria-expanded='false'
+                >
+                  <span class='select__control-item'>
+                    <img src='assets/icons/usa-flag.svg' alt='USA flag' class='select__control-item-flag-icon'>
+                    +1
+                  </span>
+                  <img src='assets/icons/arrow-down.svg' class='select__control-arrow-icon' alt='Black down arrow'>
+                </button>
+                <div
+                  class='select__options'
+                  role='listbox'
+                >
+                  <label class='select__options-item' role='option'>
+                    <input type='radio' name='country-code' value='us' class='select__options-item-input hidden' checked>
+                    <span class='select__options-item-wrapper'>
+                      <img src='assets/icons/checkmark.svg' alt='Gray checkmark' class='select__options-item-checked-icon'>
+                      <img src='assets/icons/usa-flag.svg' alt='USA flag' class='select__options-item-flag-icon'>
+                      United States +1
+                    </span>
+                  </label>
+                  <label class='select__options-item' role='option'>
+                    <input type='radio' name='country-code' value='uk' class='select__options-item-input hidden'>
+                    <span class='select__options-item-wrapper'>
+                      <img src='assets/icons/checkmark.svg' alt='Gray checkmark' class='select__options-item-checked-icon'>
+                      <img src='assets/icons/uk-flag.svg' alt='UK flag' class='select__options-item-flag-icon'>
+                      United Kingdom +44
+                    </span>
+                  </label>
+                  <label class='select__options-item' role='option'>
+                    <input type='radio' name='country-code' value='germany' class='select__options-item-input hidden'>
+                    <span class='select__options-item-wrapper'>
+                      <img src='assets/icons/checkmark.svg' alt='Gray checkmark' class='select__options-item-checked-icon'>
+                      <img src='assets/icons/germany-flag.svg' alt='Germany flag' class='select__options-item-flag-icon'>
+                      Germany +49
+                    </span>
+                  </label>
+                </div>
+              </div>
+              <label class='form-field'>
+                <span class='form-field__label'>Phone Number</span>
+                <input type='tel' name='phone-number' pattern='^[2-9]\d{9}$' class='form-field__input'>
+                <span class='form-field__error'></span>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class='basic-details__form-role'>
+            <legend class='hidden'>Select your role</legend>
+            <h6>Select your role</h6>
+
+            <p>Choose a role that better defines you.</p>
+
+            <div class='basic-details__form-role-radio-options-wrapper'>
+              <label class='radio-option'>
+                <input type='radio' name='role' id='role-buyer' class='radio-option__input hidden' checked>
+                <span class='radio-option__wrapper'>
+                  <span class='radio-option__custom'></span>
+                  <span class='radio-option__label'>Buyer</span>
+                </span>
+              </label>
+              <label class='radio-option'>
+                <input type='radio' name='role' id='role-seller' class='radio-option__input hidden'>
+                <span class='radio-option__wrapper'>
+                  <span class='radio-option__custom'></span>
+                  <span class='radio-option__label'>Seller</span>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+
+          <button type='submit' class='button basic-details__form-submit-btn' disabled>Submit</button>
+        </form>
+      </div>
+    </section>
+
+    <section class='section thank-you'>
+      <div class='container'>
+        <img src='assets/icons/checkmark.svg' class='thank-you__checkmark' alt='Gray checkmark icon'>
+        <h1>Thank you!</h1>
+        <p>The form was submitted successfully.</p>
+        <div class='thank-you__form-result'>
+          <label class='form-field form-field--readonly thank-you__form-result-name-field'>
+            <span class='form-field__label'>First Name</span>
+            <input type='text' class='form-field__input' name='first-name' readonly>
+          </label>
+          <label class='form-field form-field--readonly thank-you__form-result-name-field'>
+            <span class='form-field__label'>Last Name</span>
+            <input type='text' class='form-field__input' name='last-name' readonly>
+          </label>
+          <label class='form-field form-field--readonly'>
+            <span class='form-field__label'>Phone Number</span>
+            <input type='text' class='form-field__input' name='phone-number' readonly>
+          </label>
+          <label class='form-field form-field--readonly'>
+            <span class='form-field__label'>Role</span>
+            <input type='text' value='Buyer' class='form-field__input thank-you__form-input--role' name='role' readonly>
+          </label>
+        </div>
+        <button class='button thank-you__button'>Done</button>
+      </div>
+    </section>
+  </main>
+  <script src='script.js'></script>
 </body>
 </html>

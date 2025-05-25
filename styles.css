@@ -14,8 +14,9 @@
   --color-success-opacity-10: rgba(96, 196, 159, 0.1);
 
   --color-bg-card: #F6F6F6;
-  --color-border: #E0E0E0;
   --color-bg-disabled: #CACACA;
+  --color-bg-main: #EDF2F0;
+  --color-border: #E0E0E0;
   --color-label: #7A7A7A;
 
   --border-radius: 4px;
@@ -31,16 +32,50 @@
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: var(--font-family);
   font-weight: 400;
   font-optical-sizing: auto;
   font-size: 15px;
   color: var(--color-dark);
+  background-color: var(--color-bg-main);
 }
 
 h1 {
   margin-bottom: 8px;
   font-size: 2.252em;
+  font-weight: 600;
+}
+
+h2 {
+  margin-bottom: 8px;
+  font-size: 2em;
+  font-weight: 600;
+}
+
+h3 {
+  margin-bottom: 8px;
+  font-size: 1.8em;
+  font-weight: 600;
+}
+
+h4 {
+  margin-bottom: 8px;
+  font-size: 1.7em;
+  font-weight: 600;
+}
+
+h5 {
+  margin-bottom: 8px;
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
+h6 {
+  margin-bottom: 8px;
+  font-size: 1.2em;
   font-weight: 600;
 }
 
@@ -52,6 +87,37 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+fieldset {
+  border: none;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 15px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 410px;
+  width: 100%;
+  min-height: 686px;
+  margin: auto;
+  padding: 30px;
+  background-color: var(--color-white);
+  border-radius: 15px;
 }
 
 /* If an element hidden with this class the element is still accessible by screen readers */
@@ -103,6 +169,8 @@ img {
   position: relative;
   display: flex;
   flex-direction: column;
+  /* Place for an error */
+  margin-bottom: 16px;
 }
 
 .form-field__label {
@@ -114,7 +182,6 @@ img {
 }
 
 .form-field__input {
-  min-width: 166px;
   padding: 24px 16px 13px;
   font-size: 1.06em;
   font-family: var(--font-family);
@@ -124,6 +191,18 @@ img {
   background-color: var(--color-white);
   transition: var(--transition) border-color;
   outline: none;
+}
+
+/* Hides default increment and decrement buttons in Chrome, Safari, Edge */
+.form-field__input[type='number']::-webkit-outer-spin-button,
+.form-field__input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hides default increment and decrement buttons in Firefox */
+.form-field__input[type='number'] {
+  -moz-appearance: textfield;
 }
 
 .form-field__input--error {
@@ -154,11 +233,29 @@ img {
 }
 
 .form-field__error {
-  min-height: 12px;
-  margin-top: 4px;
-  margin-left: 17px;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 17px;
+  display: none;
   font-size: 0.66em;
   color: var(--color-error);
+}
+
+.form-field__input--error + .form-field__error {
+  display: block;
+}
+
+.form-field__input[readonly] {
+  padding-right: 0;
+  padding-left: 0;
+  padding-bottom: 0;
+  background-color: transparent;
+  border: none;
+  cursor: default;
+}
+
+.form-field--readonly .form-field__label {
+  left: 0;
 }
 
 .radio-option__wrapper {
@@ -274,6 +371,7 @@ img {
   left: 0;
   display: flex;
   flex-direction: column;
+  background-color: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
   opacity: 0;
@@ -306,7 +404,7 @@ img {
 }
 
 .select__options-item-wrapper:hover {
-  border-color: var(--color-dark-opacity-10);
+  border-color: var(--color-dark-opacity-30);
 }
 
 .select__options-item-checked-icon {
@@ -324,37 +422,134 @@ img {
 }
 
 .select__options-item-input:active + .select__options-item-wrapper {
-  border-color: var(--color-dark-opacity-30);
+  border-color: var(--color-dark-opacity-70);
 }
 
 .select__options-item-input:focus + .select__options-item-wrapper {
-  border-color: var(--color-dark-opacity-30);
   background-color: var(--color-dark-opacity-10);
 }
 
-.phone-number {
-  position: relative;
+.basic-details {
+  display: none;
 }
 
-.phone-number .form-field__label {
+.basic-details--active {
+  display: flex;
+}
+
+.basic-details__form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.basic-details__form-input-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 16px;
+  margin-bottom: 59px;
+}
+
+.basic-details__form-field {
+  /* Deducts half of the parent column gap */
+  width: calc(50% - 8px);
+}
+
+.basic-details__form-phone-number {
+  position: relative;
+  margin-top: 6px;
+  flex: 1;
+}
+
+.basic-details__form-phone-number .form-field__label {
   z-index: 1;
 }
 
-.phone-number .form-field__input {
+.basic-details__form-phone-number .form-field__input {
+  width: 100%;
   padding-left: 112px;
 }
 
-.phone-number .select {
+.basic-details__form-phone-number .select {
   position: absolute;
   top: 1px;
   left: 1px;
+  z-index: 1;
   width: 100%;
+  pointer-events: none;
 }
 
-.phone-number .select__control {
+.basic-details__form-phone-number .select__control {
   min-height: 56px;
+  pointer-events: auto;
 }
 
-.phone-number .select__options {
+.basic-details__form-phone-number .select__options {
   width: 100%;
+  pointer-events: auto;
+}
+
+.basic-details__form-role {
+  margin-bottom: 30px;
+}
+
+.basic-details__form-role-radio-options-wrapper {
+  display: flex;
+  gap: 15px;
+}
+
+.basic-details__form-role-radio-options-wrapper .radio-option {
+  width: 50%;
+}
+
+.basic-details__form-submit-btn,
+.thank-you__button {
+  width: 100%;
+  margin-top: auto;
+}
+
+.thank-you {
+  display: none;
+}
+
+.thank-you--active {
+  display: flex;
+}
+
+.thank-you__checkmark {
+  max-width: 30px;
+  margin-bottom: 30px;
+}
+
+.thank-you__form-result {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 6px;
+  column-gap: 5px;
+  padding: 36px 42px;
+  background-color: var(--color-bg-card);
+  border-radius: var(--border-radius);
+}
+
+.thank-you__form-result-name-field {
+  /* Deducts half of the parent column gap */
+  width: calc(50% - 5px);
+}
+
+@media (max-width: 410px) {
+  .basic-details__form-field {
+    width: 100%;
+  }
+
+  .basic-details__form-role-radio-options-wrapper {
+    flex-wrap: wrap;
+  }
+
+  .basic-details__form-role-radio-options-wrapper .radio-option {
+    width: 100%;
+  }
+
+  .thank-you__form-result-name-field {
+    width: 100%;
+  }
 }
